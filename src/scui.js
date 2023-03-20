@@ -2,7 +2,10 @@ import config from "./config"
 import api from './api'
 import tool from './utils/tool'
 import http from "./utils/request"
-import { permission, rolePermission } from './utils/permission'
+import {
+	permission,
+	rolePermission
+} from './utils/permission'
 
 import scTable from './components/scTable'
 import scTableColumn from './components/scTable/column.js'
@@ -19,9 +22,11 @@ import scForm from './components/scForm'
 import scTitle from './components/scTitle'
 import scWaterMark from './components/scWaterMark'
 import scQrCode from './components/scQrCode'
+import SvgIcon from '@/components/SvgIcon' // svg component
 
 import scStatusIndicator from './components/scMini/scStatusIndicator'
 import scTrend from './components/scMini/scTrend'
+import Tinymce from '@/components/tinymce/index.vue'
 
 import auth from './directives/auth'
 import auths from './directives/auths'
@@ -70,13 +75,14 @@ export default {
 		app.directive('role', role)
 		app.directive('time', time)
 		app.directive('copy', copy)
-
+		app.directive('SvgIcon', SvgIcon)
+		app.directive('tinymce', Tinymce)
 		//统一注册el-icon图标
-		for(let icon in elIcons){
+		for (let icon in elIcons) {
 			app.component(`ElIcon${icon}`, elIcons[icon])
 		}
 		//统一注册sc-icon图标
-		for(let icon in scIcons){
+		for (let icon in scIcons) {
 			app.component(`ScIcon${icon}`, scIcons[icon])
 		}
 

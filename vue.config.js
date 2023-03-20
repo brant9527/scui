@@ -1,8 +1,44 @@
-const { defineConfig } = require('@vue/cli-service')
+const path = require('path')
+
+const {
+	defineConfig
+} = require('@vue/cli-service')
+
+const minify = process.env.NODE_ENV === 'development' ? false : {
+	collapseWhitespace: true,
+	removeComments: true,
+	removeRedundantAttributes: true,
+	removeScriptTypeAttributes: true,
+	removeStyleLinkTypeAttributes: true,
+	useShortDoctype: true,
+	minifyCSS: true,
+	minifyJS: true
+}
+
+function resolve(dir) {
+	return path.join(__dirname, dir)
+}
 
 module.exports = defineConfig({
 	//设置为空打包后不分更目录还是多级目录
-	publicPath:'',
+	publicPath: '',
+	lintOnSave:false,
+	pages: {
+		index: {
+			entry: 'src/main.js',
+			template: 'public/index.html',
+			filename: 'index.html',
+			chunks: ['chunk-vendors', 'chunk-common', 'index'],
+			minify
+		},
+		preview: {
+			entry: 'src/views/preview/main.js',
+			template: 'public/preview.html',
+			filename: 'preview.html',
+			chunks: ['chunk-vendors', 'chunk-common', 'preview'],
+			minify
+		}
+	},
 	//build编译后存放静态文件的目录
 	//assetsDir: "static",
 
@@ -11,7 +47,7 @@ module.exports = defineConfig({
 
 	//开发服务,build后的生产模式还需nginx代理
 	devServer: {
-        allowedHosts: 'all',
+		allowedHosts: 'all',
 		open: false, //运行后自动打开浏览器
 		port: process.env.VUE_APP_PORT, //挂载端口
 		proxy: {
@@ -30,6 +66,21 @@ module.exports = defineConfig({
 		config.plugins.delete('preload');
 		config.plugins.delete('prefetch');
 		config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
+		config.module
+			.rule('svg')
+			.exclude.add(resolve('src/icons'))
+			.end()
+		config.module
+			.rule('icons')
+			.test(/\.svg$/)
+			.include.add(resolve('src/icons'))
+			.end()
+			.use('svg-sprite-loader')
+			.loader('svg-sprite-loader')
+			.options({
+				symbolId: 'icon-[name]'
+			})
+			.end()
 	},
 
 	configureWebpack: {
