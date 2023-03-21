@@ -5,7 +5,7 @@
 			width="500px"
 			:close-on-click-modal="false"
 			:modal-append-to-body="false"
-			v-on="$attrs"
+
 			@open="onOpen"
 			@close="onClose"
 		>

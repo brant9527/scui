@@ -2,7 +2,7 @@
 	<div>
 		<el-drawer
 			v-bind="$attrs"
-			v-on="$attrs"
+
 			@opened="onOpen"
 			@close="onClose"
 		>
