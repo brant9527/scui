@@ -4,11 +4,11 @@
       v-bind="$attrs"
       width="980px"
       :modal-append-to-body="false"
-      v-on="$listeners"
+      v-on="$attrs"
       @open="onOpen"
       @close="onClose"
     >
-      <div slot="title">
+      <template v-slot:title>
         选择图标
         <el-input
           v-model="key"
@@ -18,7 +18,7 @@
           prefix-icon="el-icon-search"
           clearable
         />
-      </div>
+      </template>
       <ul ref="iconWrap" class="icon-ul">
         <li
           v-for="icon in iconList"

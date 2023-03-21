@@ -157,15 +157,28 @@ export default {
 					return false;
 				}
 				const menuTemp = [
+
 					{
 						name: "vab",
 						path: "/vab",
 						meta: {
-							title: "列表",
+							title: "组件",
 							icon: "el-icon-takeaway-box",
 							type: "menu",
 						},
 						children: [
+
+							{
+								path: "/index",
+								name: "iconfont",
+								meta: {
+									title: "扩展图标",
+									icon: "el-icon-orange",
+									type: "menu",
+								},
+								component: "index/Home",
+							},
+
 							{
 								path: "/vab/workflow",
 								name: "workflow",
@@ -177,18 +190,21 @@ export default {
 								component: "vab/workflow",
 							},
 							{
-								path: "/vab/workflow",
-								name: "workflow",
+								path: "/vab/formrender",
+								name: "formRender",
 								meta: {
-									title: "工作流设计器",
-									icon: "el-icon-share",
+									title: "动态表单(Beta)",
+									icon: "el-icon-message-box",
 									type: "menu",
 								},
-								component: "vab/workflow",
+								component: "vab/form",
 							},
 						],
 					},
+
+
 				];
+
 				this.$TOOL.data.set("MENU", menuTemp);
 				this.$TOOL.data.set("PERMISSIONS", menu.data.permissions);
 				this.$TOOL.data.set("DASHBOARDGRID", menu.data.dashboardGrid);
@@ -199,7 +215,7 @@ export default {
 			}
 
 			this.$router.replace({
-				path: "/",
+				path: "/vab/workflow",
 			});
 			this.$message.success("Login Success 登录成功");
 			this.islogin = false;

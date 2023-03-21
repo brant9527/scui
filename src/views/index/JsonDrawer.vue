@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-drawer v-bind="$attrs" v-on="$listeners" @opened="onOpen" @close="onClose">
+    <el-drawer v-bind="$attrs"  @opened="onOpen" @close="onClose">
       <div class="action-bar" :style="{'text-align': 'left'}">
         <span class="bar-btn" @click="refresh">
           <i class="el-icon-refresh" />
@@ -64,7 +64,7 @@ export default {
       this.$message.error('代码复制失败')
     })
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener('keydown', this.preventDefaultSave)
   },
   methods: {

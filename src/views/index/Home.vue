@@ -91,8 +91,8 @@
     </div>
 
     <right-panel
-      :active-data="activeData"
-      :form-conf="formConf"
+      :activeData="activeData"
+      :formConf="formConf"
       :show-field="!!drawingList.length"
       @tag-change="tagChange"
       @fetch-data="fetchData"

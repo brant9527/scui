@@ -75,7 +75,7 @@ export default {
 		app.directive('role', role)
 		app.directive('time', time)
 		app.directive('copy', copy)
-		app.directive('SvgIcon', SvgIcon)
+		app.directive('svg-icon', SvgIcon)
 		app.directive('tinymce', Tinymce)
 		//统一注册el-icon图标
 		for (let icon in elIcons) {

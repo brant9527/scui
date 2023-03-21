@@ -1056,7 +1056,8 @@
 							default-expand-all
 							draggable
 						>
-							<span slot-scope="{ node, data }">
+
+							<template #default="{ node, data }">
 								<span class="node-label">
 									<svg-icon
 										class="node-icon"
@@ -1068,7 +1069,7 @@
 									/>
 									{{ node.label }}
 								</span>
-							</span>
+							</template>
 						</el-tree>
 					</template>
 
